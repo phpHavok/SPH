@@ -177,7 +177,7 @@ void create_liquid_shaders(liquid_t *state)
     // Compile metaball vertex shader
     GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
     #ifdef RASPI
-      compile_shader(vertexShader, "SPH/shaders/liquid_particle_es.vert");
+      compile_shader(vertexShader, "shaders/liquid_particle_es.vert");
     #else
       compile_shader(vertexShader, "shaders/liquid_particle.vert");
     #endif
@@ -185,7 +185,7 @@ void create_liquid_shaders(liquid_t *state)
     // Compile metaball frag shader
     GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
     #ifdef RASPI
-      compile_shader(fragmentShader, "SPH/shaders/liquid_particle_es.frag");
+      compile_shader(fragmentShader, "shaders/liquid_particle_es.frag");
     #else
       compile_shader(fragmentShader, "shaders/liquid_particle.frag");
     #endif
@@ -202,7 +202,7 @@ void create_liquid_shaders(liquid_t *state)
     // Compile texture vertex shader
     vertexShader = glCreateShader(GL_VERTEX_SHADER);
     #ifdef RASPI
-      compile_shader(vertexShader, "SPH/shaders/render_liquid_texture_es.vert");
+      compile_shader(vertexShader, "shaders/render_liquid_texture_es.vert");
     #else
       compile_shader(vertexShader, "shaders/render_liquid_texture.vert");
     #endif
@@ -210,7 +210,7 @@ void create_liquid_shaders(liquid_t *state)
     // Compile texture frag shader
     fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
     #ifdef RASPI
-      compile_shader(fragmentShader, "SPH/shaders/render_liquid_texture_es.frag");
+      compile_shader(fragmentShader, "shaders/render_liquid_texture_es.frag");
     #else
       compile_shader(fragmentShader, "shaders/render_liquid_texture.frag");
     #endif
@@ -227,7 +227,7 @@ void create_liquid_shaders(liquid_t *state)
     // Compile vert blur vertex shader
     vertexShader = glCreateShader(GL_VERTEX_SHADER);
     #ifdef RASPI
-      compile_shader(vertexShader, "SPH/shaders/vert_blur_es.vert");
+      compile_shader(vertexShader, "shaders/vert_blur_es.vert");
     #else
       compile_shader(vertexShader, "shaders/vert_blur.vert");
     #endif
@@ -235,7 +235,7 @@ void create_liquid_shaders(liquid_t *state)
     // Compile blur fragment shader(shared between horz vert blur vertex shaders)
     fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
     #ifdef RASPI
-      compile_shader(fragmentShader, "SPH/shaders/blur_es.frag");
+      compile_shader(fragmentShader, "shaders/blur_es.frag");
     #else
       compile_shader(fragmentShader, "shaders/blur.frag");
     #endif
@@ -252,7 +252,7 @@ void create_liquid_shaders(liquid_t *state)
     // Compile horz blur vertex shader
     vertexShader = glCreateShader(GL_VERTEX_SHADER);
     #ifdef RASPI
-      compile_shader(vertexShader, "SPH/shaders/horz_blur_es.vert");
+      compile_shader(vertexShader, "shaders/horz_blur_es.vert");
     #else
       compile_shader(vertexShader, "shaders/horz_blur.vert");
     #endif

@@ -40,7 +40,7 @@ void create_font_program(font_t *state)
     // Compile vertex shader
     GLuint vertex_shader = glCreateShader(GL_VERTEX_SHADER);
     #ifdef RASPI
-        compile_shader(vertex_shader, "SPH/shaders/font_es.vert");
+        compile_shader(vertex_shader, "shaders/font_es.vert");
     #else
         compile_shader(vertex_shader, "shaders/font.vert");
     #endif
@@ -48,7 +48,7 @@ void create_font_program(font_t *state)
     // Compile fragment shader
     GLuint frag_shader = glCreateShader(GL_FRAGMENT_SHADER);
     #ifdef RASPI
-        compile_shader(frag_shader, "SPH/shaders/font_es.frag");
+        compile_shader(frag_shader, "shaders/font_es.frag");
     #else
         compile_shader(frag_shader, "shaders/font.frag");
     #endif
@@ -381,7 +381,7 @@ void init_font(font_t *state, int screen_width, int screen_height)
 
 	// Load font face
         #ifdef RASPI
-	if(FT_New_Face(state->ft, "SPH/DroidSerif-Regular.ttf", 0, &state->face)) {
+	if(FT_New_Face(state->ft, "DroidSerif-Regular.ttf", 0, &state->face)) {
 		printf("Error loading font face\n");
 		exit(EXIT_FAILURE);
 	}

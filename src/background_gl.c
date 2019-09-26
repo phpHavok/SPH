@@ -36,7 +36,7 @@ void create_backround_program(background_t *state)
     // Compile vertex shader
     GLuint vertex_shader = glCreateShader(GL_VERTEX_SHADER);
     #ifdef RASPI
-        compile_shader(vertex_shader, "SPH/shaders/background_es.vert");
+        compile_shader(vertex_shader, "shaders/background_es.vert");
     #else
         compile_shader(vertex_shader, "shaders/background.vert");
     #endif
@@ -44,7 +44,7 @@ void create_backround_program(background_t *state)
     // Compile fragment shader
     GLuint frag_shader = glCreateShader(GL_FRAGMENT_SHADER);
     #ifdef RASPI
-        compile_shader(frag_shader, "SPH/shaders/background_es.frag");
+        compile_shader(frag_shader, "shaders/background_es.frag");
     #else
         compile_shader(frag_shader, "shaders/background.frag");
     #endif
@@ -136,7 +136,7 @@ void create_background_texture(background_t *state)
     unsigned width, height;
 
     #ifdef RASPI
-    error = lodepng_decode32_file(&image, &width, &height, "SPH/images/OakRidgeLeaf.png");
+    error = lodepng_decode32_file(&image, &width, &height, "images/OakRidgeLeaf.png");
     #else
     error = lodepng_decode32_file(&image, &width, &height, "images/OakRidgeLeaf.png");
     #endif

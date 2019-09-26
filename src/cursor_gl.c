@@ -34,7 +34,7 @@ void create_cursor_program(cursor_t *state)
     // Compile vertex shader
     GLuint vertex_shader = glCreateShader(GL_VERTEX_SHADER);
     #ifdef RASPI
-        compile_shader(vertex_shader, "SPH/shaders/cursor_es.vert");
+        compile_shader(vertex_shader, "shaders/cursor_es.vert");
     #else
         compile_shader(vertex_shader, "shaders/cursor.vert");
     #endif
@@ -42,7 +42,7 @@ void create_cursor_program(cursor_t *state)
     // Compile fragment shader
     GLuint frag_shader = glCreateShader(GL_FRAGMENT_SHADER);
     #ifdef RASPI
-        compile_shader(frag_shader, "SPH/shaders/cursor_es.frag");
+        compile_shader(frag_shader, "shaders/cursor_es.frag");
     #else
         compile_shader(frag_shader, "shaders/cursor.frag");
     #endif

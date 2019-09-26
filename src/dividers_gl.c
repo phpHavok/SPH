@@ -140,7 +140,7 @@ void create_dividers_shaders(dividers_t *state)
     // Compile vertex shader
     GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
     #ifdef RASPI
-      compile_shader(vertexShader, "SPH/shaders/divider_es.vert");
+      compile_shader(vertexShader, "shaders/divider_es.vert");
     #else
       compile_shader(vertexShader, "shaders/divider.vert");
     #endif
@@ -148,7 +148,7 @@ void create_dividers_shaders(dividers_t *state)
     // Compile frag shader
     GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
     #ifdef RASPI
-      compile_shader(fragmentShader, "SPH/shaders/divider_es.frag");
+      compile_shader(fragmentShader, "shaders/divider_es.frag");
     #else
       compile_shader(fragmentShader, "shaders/divider.frag");
     #endif

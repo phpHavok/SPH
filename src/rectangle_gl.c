@@ -102,7 +102,7 @@ void create_rectangle_program(rectangle_t *state)
     // Compile vertex shader
     GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
     #ifdef RASPI
-      compile_shader(vertexShader, "SPH/shaders/rectangle_es.vert");
+      compile_shader(vertexShader, "shaders/rectangle_es.vert");
     #else
       compile_shader(vertexShader, "shaders/rectangle.vert");
     #endif
@@ -110,7 +110,7 @@ void create_rectangle_program(rectangle_t *state)
     // Compile frag shader
     GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
     #ifdef RASPI
-      compile_shader(fragmentShader, "SPH/shaders/rectangle_es.frag");
+      compile_shader(fragmentShader, "shaders/rectangle_es.frag");
     #else
       compile_shader(fragmentShader, "shaders/rectangle.frag");
     #endif

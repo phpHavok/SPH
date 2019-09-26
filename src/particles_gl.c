@@ -85,7 +85,7 @@ void create_particle_shaders(particles_t *state)
     // Compile vertex shader
     GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
     #ifdef RASPI
-      compile_shader(vertexShader, "SPH/shaders/particle_es.vert");
+      compile_shader(vertexShader, "shaders/particle_es.vert");
     #else
       compile_shader(vertexShader, "shaders/particle.vert");
     #endif
@@ -93,7 +93,7 @@ void create_particle_shaders(particles_t *state)
     // Compile frag shader
     GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
     #ifdef RASPI
-      compile_shader(fragmentShader, "SPH/shaders/particle_es.frag");
+      compile_shader(fragmentShader, "shaders/particle_es.frag");
     #else
       compile_shader(fragmentShader, "shaders/particle.frag");
     #endif

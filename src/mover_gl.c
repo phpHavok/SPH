@@ -117,7 +117,7 @@ void create_sphere_mover_program(mover_t *state)
     // Compile vertex shader
     GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
     #ifdef RASPI
-      compile_shader(vertexShader, "SPH/shaders/mover_circle_es.vert");
+      compile_shader(vertexShader, "shaders/mover_circle_es.vert");
     #else
       compile_shader(vertexShader, "shaders/mover_circle.vert");
     #endif
@@ -125,7 +125,7 @@ void create_sphere_mover_program(mover_t *state)
     // Compile frag shader
     GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
     #ifdef RASPI
-      compile_shader(fragmentShader, "SPH/shaders/mover_circle_es.frag");
+      compile_shader(fragmentShader, "shaders/mover_circle_es.frag");
     #else
       compile_shader(fragmentShader, "shaders/mover_circle.frag");
     #endif
@@ -157,7 +157,7 @@ void create_rectangle_mover_program(mover_t *state)
     // Compile vertex shader
     GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
     #ifdef RASPI
-      compile_shader(vertexShader, "SPH/mover_rectangle_es.vert");
+      compile_shader(vertexShader, "mover_rectangle_es.vert");
     #else
       compile_shader(vertexShader, "mover_rectangle.vert");
     #endif
@@ -165,7 +165,7 @@ void create_rectangle_mover_program(mover_t *state)
     // Compile frag shader
     GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
     #ifdef RASPI
-      compile_shader(fragmentShader, "SPH/mover_rectangle_es.frag");
+      compile_shader(fragmentShader, "mover_rectangle_es.frag");
     #else
       compile_shader(fragmentShader, "mover_rectangle.frag");
     #endif
