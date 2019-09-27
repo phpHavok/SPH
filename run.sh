@@ -15,4 +15,4 @@ while read -r host; do
 done < /opt/topology.lst
 NUM_PROC=$((`wc -l < "$TOP_FILE"` * 4))
 echo "Running on $NUM_PROC processors..."
-mpirun -np "$NUM_PROC" --hostfile "$TOP_FILE" -x LD_LIBRARY_PATH ~/sph.out
+mpirun -np "$NUM_PROC" --hostfile "$TOP_FILE" ~/sph.out
