@@ -107,7 +107,8 @@ void start_simulation(int ccs_ppn)
     params.tunable_params.mover_type = SPHERE_MOVER;
 
     #ifdef RASPI
-    int steps_per_frame = 1; // Number of steps to compute before updating render node
+    int steps_per_frame = 4; // Number of steps to compute before updating render node
+    params.tunable_params.time_step /= (float)steps_per_frame;
     #else
     int steps_per_frame = 4;
     params.tunable_params.time_step /= (float)steps_per_frame;
@@ -115,9 +116,9 @@ void start_simulation(int ccs_ppn)
 
     // The number of particles used may differ slightly
     #ifdef RASPI
-    params.number_fluid_particles_global = 1500;
+    params.number_fluid_particles_global = 3000;
     #else
-    params.number_fluid_particles_global = 1500;
+    params.number_fluid_particles_global = 3000;
     #endif
 
     // Boundary box
