@@ -1,6 +1,7 @@
 SRC:=src
 BIN:=bin
 TARGET:=$(BIN)/sph.out
+PPN?=1
 CC:=mpicc
 LDFLAGS:=-L$(SDKSTAGE)/opt/vc/lib/ -lGLESv2 -lGLEW -lEGL -lopenmaxil -lbcm_host -lvcos -lvchiq_arm -lpthread -lrt -L../libs/ilclient -L../libs/vgfont -lfreetype
 INCLUDES:=-I$(SDKSTAGE)/opt/vc/include/ -I$(SDKSTAGE)/opt/vc/include/interface/vcos/pthreads -I$(SDKSTAGE)/opt/vc/include/interface/vmcs_host/linux -I$(SRC)/ -I../libs/ilclient -I../libs/vgfont -I/usr/include/freetype2
@@ -34,6 +35,6 @@ clean:
 	rm -f $(SRC)/*.o
 
 run:
-	./run.sh
+	./run.sh $(PPN)
 
 .PHONY: default light blink leap clean run

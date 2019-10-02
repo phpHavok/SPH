@@ -33,8 +33,11 @@ number-of-particle based load-balancing scheme.
 ## Building and Running
 
 On the University of Kentucky's Titan Titan cluster, just type `make` to build
-and `make run` to run. This probably won't work out of the box on anyone else's
-system.
+and `make run` to run. This will run one process per node by default. If you
+would like to run, for example, 4 processes per node, you can type `make PPN=4
+run`.
+
+This probably won't work out of the box on anyone else's system.
 
 ## Controls
 

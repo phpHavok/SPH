@@ -46,6 +46,13 @@ THE SOFTWARE.
 int main(int argc, char *argv[])
 {
     int return_value;
+    int ccs_ppn = 1;
+    if (argc >= 2) {
+        ccs_ppn = atoi(argv[1]);
+        if (ccs_ppn < 1) {
+            ccs_ppn = 1;
+        }
+    }
 
     // Initialize MPI
     MPI_Init(&argc, &argv);
@@ -60,15 +67,15 @@ int main(int argc, char *argv[])
 
     // Rank 0 is the render node, otherwise a simulation node
     if(rank == 0)
-        return_value = start_renderer();
+        return_value = start_renderer(ccs_ppn);
     else
-        start_simulation();
+        start_simulation(ccs_ppn);
 
     MPI_Finalize();
     return return_value;
 }
 
-void start_simulation()
+void start_simulation(int ccs_ppn)
 {
     int rank, nprocs;
 
@@ -249,10 +256,13 @@ void start_simulation()
 
     // Initialize RGB Light if present
     #if defined LIGHT || defined BLINK1
+    int rank_n = rank / ccs_ppn;
     rgb_light_t light_state;
     float *colors_by_rank = malloc(3*nprocs*sizeof(float));
     MPI_Bcast(colors_by_rank, 3*nprocs, MPI_FLOAT, 0, MPI_COMM_WORLD);
-    init_rgb_light(&light_state, 255*colors_by_rank[3*rank], 255*colors_by_rank[3*rank+1], 255*colors_by_rank[3*rank+2]);
+    if (0 == rank % ccs_ppn) {
+        init_rgb_light(&light_state, 255*colors_by_rank[ccs_ppn*3*rank_n], 255*colors_by_rank[ccs_ppn*3*rank_n+1], 255*colors_by_rank[ccs_ppn*3*rank_n+2]);
+    }
     free(colors_by_rank);
     // Without this pause the lights can sometimes change color too quickly the first time step
     sleep(1);
@@ -297,10 +307,12 @@ void start_simulation()
         // If recently added to computation turn light to light state color
         // If recently taken out of computation turn light to white
         char currently_active = params.tunable_params.active;
-        if (!previously_active && currently_active)
-            rgb_light_reset(&light_state);
-        else if (!currently_active && previously_active)
-            rgb_light_white(&light_state);
+        if (0 == rank % ccs_ppn) {
+            if (!previously_active && currently_active)
+                rgb_light_reset(&light_state);
+            else if (!currently_active && previously_active)
+                rgb_light_white(&light_state);
+        }
         #endif
 
         if(params.tunable_params.kill_sim)
@@ -372,6 +384,7 @@ void start_simulation()
     }
 
     #if defined LIGHT || defined BLINK1
+    if (0 == rank % ccs_ppn)
         shutdown_rgb_light(&light_state);
     #endif
 

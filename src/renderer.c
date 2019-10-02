@@ -46,7 +46,7 @@ THE SOFTWARE.
     #include "blink1_light.h"
 #endif
 
-int start_renderer()
+int start_renderer(int ccs_ppn)
 {
     // Setup initial OpenGL state
     gl_t gl_state;
@@ -179,16 +179,17 @@ int start_renderer()
 
     // Create color index, equally spaced around HSV
     float *colors_by_rank = malloc(3*render_state.num_compute_procs*sizeof(float));
-    float angle_space = 0.5f/(float)render_state.num_compute_procs;
+    float angle_space = 0.5f/((float)render_state.num_compute_procs/ccs_ppn);
     float HSV[3];
     for(i=0; i<render_state.num_compute_procs; i++)
     {
-        if(i%2)
-            HSV[0] = angle_space*i;
+        int group = i / ccs_ppn;
+        if(group%2)
+            HSV[0] = angle_space*group;
         else
-            HSV[0] = angle_space*i + 0.5f;
+            HSV[0] = angle_space*group + 0.5f;
         HSV[1] = 1.0f;
-        HSV[2] = 0.8f;
+        HSV[2] = 1.0f - (1.0f/ccs_ppn)*(i % ccs_ppn);
         hsv_to_rgb(HSV, colors_by_rank+3*i);
     }
  
